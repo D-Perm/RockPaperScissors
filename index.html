@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<style>
+    body {
+    background-color:white;
+    font-family:arial, sans-sarif;
+    text-align:center;
+    }
+    label {
+    font-size:30px;
+    }
+    input {
+    height:30px;
+    width:30px;
+    }
+    .image-button {
+    background:none;
+    border:none;
+    padding:none;
+    cursor:pointer;
+    }
+    .image-button img {
+    width: 150px; 
+    height: auto;
+    display: block;
+    border:2px solid black;
+    border-radius: 100px;
+    }
+    .image-button img:hover {
+    filter: brightness(0.95)
+    }
+    #bigh1 {
+    font-size: 70px;
+    margin:10px;
+    }
+    #PlayScore {
+        margin:0px;
+        color:rgb(17, 255, 17);
+    }
+    #ComScore {
+        margin:0px;
+        color:rgb(255, 0, 0);
+    }
+</style>
+<html>
+<body>
+
+<h1>Rock, Paper, Scissors!</h1>
+<button id="rock" class="image-button">
+    <img src="Rock.png" alt="Rock">
+</button>
+<button id="paper" class="image-button">
+    <img src="Paper.png" alt="Paper">
+</button>
+<button id="sci" class="image-button">
+    <img src="Scissors.png" alt="Scissors">
+</button>
+<h1>PLAYER: <span id="PlayChoice"></span></h1>
+<h1>Computer: <span id="ComChoice"></span></h1>
+<h1 id="bigh1"></h1>
+<h2>Player Score: <span id="PlayScore">0</span></h2>
+<h2>Computer Score: <span id="ComScore">0</span></h2>
+
+<script>
+    const rock = document.getElementById("rock");
+    const paper = document.getElementById("paper");
+    const sci = document.getElementById("sci");
+    let PlayChoice = document.getElementById("PlayChoice");
+    let ComChoice = document.getElementById("ComChoice");
+    let bigh1 = document.getElementById("bigh1");
+    let PlayScore = document.getElementById("PlayScore");
+    let ComScore = document.getElementById("ComScore");
+    let result;
+    let cScore = 0;
+    let pScore = 0;
+
+    function resetGame1() {
+    window.alert("COMPUTER WINS!");
+    cScore = 0;
+    pScore = 0;
+    ComScore.textContent = `${cScore}`;
+    PlayScore.textContent = `${pScore}`;
+    bigh1.textContent = "";
+    PlayChoice.textContent = "";
+    ComChoice.textContent = "";
+}
+function resetGame2() {
+    window.alert("YOU WIN!");
+    cScore = 0;
+    pScore = 0;
+    ComScore.textContent = `${cScore}`;
+    PlayScore.textContent = `${pScore}`;
+    bigh1.textContent = "";
+    PlayChoice.textContent = "";
+    ComChoice.textContent = "";
+}
+    function setScore(callback) {
+        ComScore.textContent = `${cScore}`;
+        callback() 
+    }
+    function setScore2(callback) {
+        PlayScore.textContent = `${pScore}`;
+        callback()
+    }
+        rock.onclick = function (){
+            PlayChoice.textContent = `Rock`;
+            result = Math.floor(Math.random() * 3)+1
+            if(result === 1){
+                ComChoice.textContent = `Rock`;
+                bigh1.setAttribute("style", "color: black;")
+                bigh1.textContent = `IT'S A TIE!`;
+            }
+            else if(result === 2){
+                ComChoice.textContent = `Paper`;
+                bigh1.textContent = `YOU LOSE!`;
+                bigh1.setAttribute("style", "color: red;")
+                cScore = cScore + 1;
+                ComScore.textContent = `${cScore}`;
+            }
+            else{
+                ComChoice.textContent = `Scissors`;
+                bigh1.textContent = `YOU WIN!`;
+                bigh1.setAttribute("style", "color: rgb(17, 255, 17);")
+                pScore = pScore + 1;
+                PlayScore.textContent = `${pScore}`;
+            }
+            if (cScore === 7) {
+            setScore(resetGame1);
+
+            }  
+            else if (pScore === 7) {
+            setScore2(resetGame2);
+            }
+    }
+        paper.onclick = function () {
+            PlayChoice.textContent = `Paper`;
+                result = Math.floor(Math.random() * 3)+1
+            if(result === 1){
+                ComChoice.textContent = `Rock`;
+                bigh1.textContent = `YOU WIN!`;
+                bigh1.setAttribute("style", "color: rgb(17, 255, 17);")
+                pScore = pScore + 1;
+                PlayScore.textContent = `${pScore}`;
+            }
+            else if(result === 2){
+                ComChoice.textContent = `Paper`;
+                bigh1.setAttribute("style", "color: black;")
+                bigh1.textContent = `IT'S A TIE!`;
+            }
+            else{
+                ComChoice.textContent = `Scissors`;
+                bigh1.textContent = `YOU LOSE!`;
+                bigh1.setAttribute("style", "color: red;")
+                cScore = cScore + 1;
+                ComScore.textContent = `${cScore}`;
+            }
+        if (cScore === 7) {
+            setScore(resetGame1);
+
+            }  
+            else if (pScore === 7) {
+            setScore2(resetGame2);
+            }
+        }
+       sci.onclick = function () {
+            PlayChoice.textContent = `Scissors`;
+                result = Math.floor(Math.random() * 3)+1
+            if(result === 1){
+                ComChoice.textContent = `Rock`;
+                bigh1.textContent = `YOU LOSE!`;
+                bigh1.setAttribute("style", "color: red;")
+                cScore = cScore + 1;
+                ComScore.textContent = `${cScore}`;
+            }
+            else if(result === 2){
+                ComChoice.textContent = `Paper`;
+                bigh1.textContent = `YOU WIN!`;
+                bigh1.setAttribute("style", "color: rgb(17, 255, 17);")
+                pScore = pScore + 1;
+                PlayScore.textContent = `${pScore}`;
+            }
+            else{
+                ComChoice.textContent = `Scissors`;
+                bigh1.setAttribute("style", "color: black;")
+                bigh1.textContent = `IT'S A TIE!`;
+            }
+            if (cScore === 7) {
+            setScore(resetGame1);
+
+            }  
+            else if (pScore === 7) {
+            setScore2(resetGame2);
+            }
+        }
+</script>
+</body>
+</html>
